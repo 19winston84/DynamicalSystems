@@ -1,0 +1,222 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7550,        214]
+NotebookOptionsPosition[      6815,        191]
+NotebookOutlinePosition[      7208,        207]
+CellTagsIndexPosition[      7165,        204]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["2.4 Integral of motion", "Title",
+ CellChangeTimes->{{3.909135053204261*^9, 
+  3.9091350608655977`*^9}},ExpressionUUID->"77aa2585-9b5c-43d8-a1c3-\
+c3dce28b34ee"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The motion of a bead on a rotating hoop is described by the dimensionless \
+dynamical system\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox["\[Phi]", "."], "\[LongEqual]", "\[Omega]"}], 
+       TraditionalForm], "errors" -> {}, "input" -> "\\dot{\\phi} = \\omega", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6cdd8cbd-a0f5-4f8e-86e7-8c902519427c"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox["\[Omega]", "."], "\[LongEqual]", "sin", 
+         RowBox[{"(", "\[Phi]", ")"}], 
+         RowBox[{"[", 
+           RowBox[{"cos", 
+             RowBox[{"(", "\[Phi]", ")"}], "-", "\[Tau]", "-", "1"}], "]"}]}],
+        TraditionalForm], "errors" -> {}, "input" -> 
+     "\\dot{\\omega}=\\sin(\\phi)[\\cos(\\phi)-\\tau-1]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e2593100-b423-45e3-8c7b-8e1ae1b4a5a1"],
+ "\n\nHere, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|
+    "boxes" -> FormBox["\[Phi]", TraditionalForm], "errors" -> {}, "input" -> 
+     "\\phi", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "05487e6e-89cb-47df-9fb1-fa42f01710fb"],
+ " is the angle, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|
+    "boxes" -> FormBox["\[Omega]", TraditionalForm], "errors" -> {}, "input" -> 
+     "\\omega", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9ec9b343-78dd-4996-9eae-655648917a1d"],
+ " describes the angular velocity and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|
+    "boxes" -> FormBox["\[Tau]", TraditionalForm], "errors" -> {}, "input" -> 
+     "\\tau", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b586fc74-de15-44bf-ad5a-8c73861bb02b"],
+ " is a dimensionless parameter.\n\nDerive an integral of motion for this \
+dynamical system in terms of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"(", 
+         RowBox[{"\[Phi]", ",", "\[Omega]", ",", "\[Tau]"}], ")"}], 
+       TraditionalForm], "errors" -> {}, "input" -> "(\\phi,\\omega,\\tau)", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "affb69a4-0981-42d8-ad8d-abcc4d6df75b"],
+ ". Normalise your conserved quantity so that the terms that contain ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|
+    "boxes" -> FormBox["\[Omega]", TraditionalForm], "errors" -> {}, "input" -> 
+     "\\omega", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "93e3b6d5-5a06-4fc8-aca9-e7ede7cddba5"],
+ " have the prefactor +1 and adjust the additive integration constant so that \
+the conserved quantity is equal to -1 when ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"\[Phi]", "\[LongEqual]", "\[Pi]", "/", "2"}], 
+       TraditionalForm], "errors" -> {}, "input" -> "\\phi=\\pi/2 ", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8365ab2e-ab4e-43c2-a3a0-f3f704f732fc"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"\[Omega]", "\[LongEqual]", "0"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "\\omega=0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "14776fc2-7ac8-45cb-b1ff-1c0a57ac3edd"],
+ ". \nWhat is the integral of Motion?\n\n\nCondition ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         FractionBox[
+          StyleBox["d", "TI"], 
+          RowBox[{
+            StyleBox["d", "TI"], 
+            StyleBox["t", "TI"]}]], 
+         RowBox[{"[", 
+           StyleBox["E", "TI"], "]"}], "\[LongEqual]", "0"}], 
+       TraditionalForm], "errors" -> {}, "input" -> "\\frac{d}{dt}[E]=0", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "dce34c26-4a8a-4436-a20d-4a2a5765744b"],
+ " \nLook at heft"
+}], "Subsubsection",
+ CellChangeTimes->{
+  3.909135067071376*^9, {3.909135298867284*^9, 3.9091354303123913`*^9}, {
+   3.9091357106376867`*^9, 3.909135778442944*^9}, {3.909562339733295*^9, 
+   3.909562371627528*^9}, {3.909562408340959*^9, 
+   3.909562410940526*^9}},ExpressionUUID->"cb590760-2c8e-4e1f-805b-\
+61e73327e501"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"x_", ",", " ", "t_"}], "]"}], " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{"x", "[", "t", "]"}], "]"}], " ", "*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Derivative", "[", "1", "]"}], "[", "x", "]"}], "[", "t", "]"}],
+     " ", "*", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Cos", "[", 
+       RowBox[{"x", "[", "t", "]"}], "]"}], " ", "-", " ", "t", " ", "-", " ",
+       "1"}], ")"}]}]}], "\n"}], "\n", 
+ RowBox[{"integral", " ", "=", " ", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", 
+     RowBox[{"x", ",", " ", "t"}], "]"}], ",", " ", 
+    RowBox[{"x", "[", "t", "]"}]}], "]"}]}], "\n"}], "Code",
+ CellChangeTimes->{{3.909564167783311*^9, 3.909564247407824*^9}, {
+   3.9095642897083607`*^9, 3.90956431952453*^9}, 3.9095643717932463`*^9, {
+   3.909564403433716*^9, 3.909564432035248*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"ed0a6eda-b6e8-4b60-ad35-1c156b0727dc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox["1", "2"]}], " ", 
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", "t", "+", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"x", "[", "t", "]"}], "]"}]}], ")"}], "2"], " ", 
+  RowBox[{
+   SuperscriptBox["x", "\[Prime]",
+    MultilineFunction->None], "[", "t", "]"}]}]], "Output",
+ CellChangeTimes->{{3.90956432352912*^9, 3.909564323652013*^9}, 
+   3.90956437613202*^9, 3.909564433653405*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"b6fab4bc-8ba3-4d06-825e-34dd6ecd5b0c"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1512, 916},
+WindowMargins->{{-1, Automatic}, {Automatic, 1}},
+FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"8ac7399a-0975-4ebc-a2f9-a8b7b85649aa"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 167, 3, 98, "Title",ExpressionUUID->"77aa2585-9b5c-43d8-a1c3-c3dce28b34ee"],
+Cell[CellGroupData[{
+Cell[772, 29, 4426, 110, 386, "Subsubsection",ExpressionUUID->"cb590760-2c8e-4e1f-805b-61e73327e501"],
+Cell[CellGroupData[{
+Cell[5223, 143, 1001, 26, 110, "Code",ExpressionUUID->"ed0a6eda-b6e8-4b60-ad35-1c156b0727dc"],
+Cell[6227, 171, 548, 15, 49, "Output",ExpressionUUID->"b6fab4bc-8ba3-4d06-825e-34dd6ecd5b0c"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
