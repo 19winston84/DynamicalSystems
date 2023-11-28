@@ -1,0 +1,425 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15110,        417]
+NotebookOptionsPosition[     13748,        384]
+NotebookOutlinePosition[     14139,        400]
+CellTagsIndexPosition[     14096,        397]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["3.2 Hopf bifurcation", "Title",
+ CellChangeTimes->{{3.909738668557619*^9, 
+  3.909738679319804*^9}},ExpressionUUID->"7a137d66-b123-44fd-8cbc-\
+a822efe2efbc"],
+
+Cell[TextData[{
+ StyleBox["See exercises 8.2.14-15 in Strogatz",
+  FontSize->18,
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0., 0., 0.]],
+ "\nFor each of the following two-dimensional flows\n\t\t\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["x", "TI"], "."], "\[LongEqual]", 
+         RowBox[{"\[Mu]", 
+           StyleBox["x", "TI"], "-", "5", 
+           StyleBox["y", "TI"], "-", "1", 
+           SuperscriptBox[
+            StyleBox["x", "TI"], "3"]}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "{{\\dot{x}}}&{{}=}&{{}\\mu x-5y-1x^{3}}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "01d6b2a0-beb4-46b8-b713-a17501e5dfdb"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["y", "TI"], "."], "  ", "\[LongEqual]   ", "5", 
+         StyleBox["x", "TI"], "+", "\[Mu]", 
+         StyleBox["y", "TI"], "+", "3", 
+         SuperscriptBox[
+          StyleBox["y", "TI"], "3"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\dot{y}\\ \\ =\\ \\ \\,5x+\\mu y+3y^{3}", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9adfe1ef-bfb8-406f-ad86-5ad0c09429d9"],
+ "\n\t\t\nand\n\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["x", "TI"], "."], "\[LongEqual]", "\[Mu]", 
+         StyleBox["x", "TI"], "+", 
+         StyleBox["y", "TI"], "-", 
+         SuperscriptBox[
+          StyleBox["x", "TI"], "2"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\dot{x} =\\mu x+y-x^{2}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "bf75fb6e-388f-4e98-9e86-93c97cad3333"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["y", "TI"], "."], "\[LongEqual]", 
+         RowBox[{"-", 
+           StyleBox["x", "TI"], "+", "\[Mu]", 
+           StyleBox["y", "TI"], "+", "2", 
+           SuperscriptBox[
+            StyleBox["x", "TI"], "2"]}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "{{\\dot{y}}}&{{=}}&{{-x+\\mu y+2x^{2}}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "60e05eb7-8054-40a9-a10b-fb579f407203"],
+ "\n\na Hopf bifurcation occurs at the origin for \[Mu]=0.\n\nA system with \
+these properties can, at the bifurcation, be brought into the form\n\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["x", "TI"], "."], " ", "\[LongEqual] ", "-", "\[Omega]", 
+         StyleBox["y", "TI"], "+", 
+         StyleBox["f", "TI"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], ",", 
+             StyleBox["y", "TI"]}], ")"}]}], TraditionalForm], "errors" -> {},
+      "input" -> "\\dot{x}\\ =\\ -\\omega y+f(x,y)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "3a74b770-e13d-4d4d-8d03-6a8edd4090a0"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["y", "TI"], "."], "\[LongEqual]", 
+         RowBox[{"\[Omega]", 
+           StyleBox["x", "TI"], "+", 
+           StyleBox["g", "TI"], 
+           RowBox[{"(", 
+             RowBox[{
+               StyleBox["x", "TI"], ",", 
+               StyleBox["y", "TI"]}], ")"}]}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> "{{\\dot{y}}}&{{}={}}&{{}\\omega x+g(x,y)}", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8c9c3940-64c5-4366-ab9e-29e006908185"],
+ "\n\nby a suitable change of coordinates. The functions ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["f", "TI"], TraditionalForm], "errors" -> {}, "input" -> "f", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "cb161257-4d45-4c31-b21c-40ecae575049"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["g", "TI"], TraditionalForm], "errors" -> {}, "input" -> "g", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b6d6be7f-3ab9-46c3-b927-f916e499347d"],
+ " contain only higher-order (non-linear) terms that vanish at the origin.\n\n"
+}], "Section",
+ CellChangeTimes->{
+  3.9097386850144377`*^9, {3.9097388253056717`*^9, 3.909738859607416*^9}, {
+   3.909740503107531*^9, 3.909740564612207*^9}, {3.909740598499216*^9, 
+   3.9097406623086023`*^9}, {3.909740866945225*^9, 
+   3.909740896828178*^9}},ExpressionUUID->"e0864fee-4865-44de-9080-\
+bae92cd12343"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+a) What is \[Omega] for the two systems (1) and (2), respectively? Write your \
+answer as the vector [\[Omega]\:200b(1)\:200b,\[Omega]\:200b(2)].\
+\>", "Section",
+ CellChangeTimes->{{3.9097388788837337`*^9, 
+  3.909738917246523*^9}},ExpressionUUID->"ff43961e-9419-4114-becf-\
+2b041205a6ee"],
+
+Cell[TextData[{
+ "Compare! Find ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|
+    "boxes" -> FormBox["\[Omega]", TraditionalForm], "errors" -> {}, "input" -> 
+     "\\omega", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "ec82153e-3636-49f7-8257-2da4f03728f3"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.909738925692554*^9, 
+  3.9097389383270397`*^9}},ExpressionUUID->"918798e3-9098-4be2-832b-\
+d37d75bba65c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b) Determine f and g for the systems (1) and (2). Write your solution as the \
+matrix [[f\:200b(1),g\:200b(1)],[f\:200b(2)\:200b\:200b,g\:200b(2)]].\
+\>", "Section",
+ CellChangeTimes->{{3.909738944592278*^9, 
+  3.909738988816567*^9}},ExpressionUUID->"dfcc8331-3bf2-402b-a65d-\
+d8cc9f9a73dc"],
+
+Cell["find f(x,y), g(x,y) comparison!", "Text",
+ CellChangeTimes->{{3.909738995323311*^9, 
+  3.909739010292255*^9}},ExpressionUUID->"f07a4635-6c80-461a-9ec8-\
+f6aa238af142"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "It can be shown that whether the bifurcation is subcritical or \
+supercritical depends solely on the sign of the quantity ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["a", "TI"], TraditionalForm], "errors" -> {}, "input" -> "a", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "7cf2df7f-026d-4dd8-837b-b7acc20d613b"],
+ " defined by\n\n",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"16", 
+         StyleBox["a", "TI"], "  ", "\[LongEqual]  ", 
+         SubscriptBox[
+          StyleBox["f", "TI"], 
+          RowBox[{
+            StyleBox["x", "TI"], 
+            StyleBox["x", "TI"], 
+            StyleBox["x", "TI"]}]], "+", 
+         SubscriptBox[
+          StyleBox["f", "TI"], 
+          RowBox[{
+            StyleBox["x", "TI"], 
+            StyleBox["y", "TI"], 
+            StyleBox["y", "TI"]}]], "+", 
+         SubscriptBox[
+          StyleBox["g", "TI"], 
+          RowBox[{
+            StyleBox["x", "TI"], 
+            StyleBox["x", "TI"], 
+            StyleBox["y", "TI"]}]], "+", 
+         SubscriptBox[
+          StyleBox["g", "TI"], 
+          RowBox[{
+            StyleBox["y", "TI"], 
+            StyleBox["y", "TI"], 
+            StyleBox["y", "TI"]}]]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "16a\\ \\ =\\ \\ f_{x x x}+f_{x y y}+g_{x x y}+g_{y y y}", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "10c06440-7da5-4189-af45-ef60d2b2c029"],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"+", 
+         FractionBox["1", "\[Omega]"], 
+         RowBox[{"[", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["f", "TI"], 
+              RowBox[{
+                StyleBox["x", "TI"], 
+                StyleBox["y", "TI"]}]], 
+             RowBox[{"(", 
+               RowBox[{
+                 SubscriptBox[
+                  StyleBox["f", "TI"], 
+                  RowBox[{
+                    StyleBox["x", "TI"], 
+                    StyleBox["x", "TI"]}]], "+", 
+                 SubscriptBox[
+                  StyleBox["f", "TI"], 
+                  RowBox[{
+                    StyleBox["y", "TI"], 
+                    StyleBox["y", "TI"]}]]}], ")"}], "-", 
+             SubscriptBox[
+              StyleBox["g", "TI"], 
+              RowBox[{
+                StyleBox["x", "TI"], 
+                StyleBox["y", "TI"]}]], 
+             RowBox[{"(", 
+               RowBox[{
+                 SubscriptBox[
+                  StyleBox["g", "TI"], 
+                  RowBox[{
+                    StyleBox["x", "TI"], 
+                    StyleBox["x", "TI"]}]], "+", 
+                 SubscriptBox[
+                  StyleBox["g", "TI"], 
+                  RowBox[{
+                    StyleBox["y", "TI"], 
+                    StyleBox["y", "TI"]}]]}], ")"}], "-", 
+             SubscriptBox[
+              StyleBox["f", "TI"], 
+              RowBox[{
+                StyleBox["x", "TI"], 
+                StyleBox["x", "TI"]}]], 
+             SubscriptBox[
+              StyleBox["g", "TI"], 
+              RowBox[{
+                StyleBox["x", "TI"], 
+                StyleBox["x", "TI"]}]], "+", 
+             SubscriptBox[
+              StyleBox["f", "TI"], 
+              RowBox[{
+                StyleBox["y", "TI"], 
+                StyleBox["y", "TI"]}]], 
+             SubscriptBox[
+              StyleBox["g", "TI"], 
+              RowBox[{
+                StyleBox["y", "TI"], 
+                StyleBox["y", "TI"]}]]}], "]"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "+\\frac{1}{\\omega}[f_{x y}(f_{x x}+f_{y y})-g_{x y}(g_{x x}+g_{y \
+y})-f_{x x}g_{x x}+f_{y y}g_{y y}]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "3168f058-3626-462e-88c3-5af54c458eee"],
+ "\n\nwhere the subscripts denote partial derivatives evaluated at the fixed \
+point (0,0). According to this criterion, the bifurcation is supercritical if \
+",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["a", "TI"], "<", "0"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "a<0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b7bed49b-566d-4632-b907-4e456f21c412"],
+ " and subcritical if ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["a", "TI"], ">", "0"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "a>0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8130519c-54d7-46d4-af57-c87dbd782b86"],
+ ".\n\nc) Determine a for the two systems (1) and (2). Write you solution as \
+the vector [a\:200b(1),a\:200b(2)].\n",
+ StyleBox["Using this result you should be able to determine what kind of \
+bifurcations the systems (1) and (2) undergo at \[Mu] = 0.",
+  FontSize->18,
+  FontSlant->"Italic"]
+}], "Section",
+ CellChangeTimes->{{3.909739017085616*^9, 3.909739049263977*^9}, {
+  3.90974067476015*^9, 
+  3.9097408454625797`*^9}},ExpressionUUID->"13b559da-4f6b-4846-b155-\
+181c39e621a1"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["a", "TI"], ">", "0", "\[Rule]"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "a>0 \\rightarrow", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b1ab89d1-1429-4ed6-9deb-e59a13ba3653"],
+ " subcritical\n",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["a", "TI"], "<", "0", "\[Rule]"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "a<0 \\rightarrow", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "bc4f35de-92b2-4ebc-b2b0-a97428e3fde4"],
+ " supercritical"
+}], "Text",
+ CellChangeTimes->{{3.9097390573428593`*^9, 
+  3.9097390982168627`*^9}},ExpressionUUID->"d4f2fa04-8389-4bc1-97fa-\
+df860d89eff0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+d) Draw phase portraits of the global dynamics for positive and negative \
+\[Mu] for each of the systems (1) and (2). Make sure that these phase \
+portraits verify the criteria you found in subtask c). Use a numerical \
+solver, for example NDSolve[] in Mathematica (using StreamPlot[] will not \
+give enough resolution for this task).\
+\>", "Section",
+ CellChangeTimes->{{3.909739123562936*^9, 
+  3.909739128916995*^9}},ExpressionUUID->"1715677f-a4aa-40e7-a323-\
+b102d3e0d966"],
+
+Cell["Phase portraits <-> Numerical solution not StreamPlot", "Text",
+ CellChangeTimes->{{3.9097391435259113`*^9, 
+  3.9097391849204493`*^9}},ExpressionUUID->"59417496-0230-40f3-9082-\
+5600d36c25bd"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{756, 916},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"50f0603c-bcb9-4db5-9678-34bd8813bd9e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 163, 3, 98, "Title",ExpressionUUID->"7a137d66-b123-44fd-8cbc-a822efe2efbc"],
+Cell[746, 27, 4864, 123, 941, "Section",ExpressionUUID->"e0864fee-4865-44de-9080-bae92cd12343"],
+Cell[CellGroupData[{
+Cell[5635, 154, 300, 6, 91, "Section",ExpressionUUID->"ff43961e-9419-4114-becf-2b041205a6ee"],
+Cell[5938, 162, 449, 13, 37, "Text",ExpressionUUID->"918798e3-9098-4be2-832b-d37d75bba65c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6424, 180, 301, 6, 105, "Section",ExpressionUUID->"dfcc8331-3bf2-402b-a65d-d8cc9f9a73dc"],
+Cell[6728, 188, 173, 3, 35, "Text",ExpressionUUID->"f07a4635-6c80-461a-9ec8-f6aa238af142"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6938, 196, 5195, 141, 602, "Section",ExpressionUUID->"13b559da-4f6b-4846-b155-181c39e621a1"],
+Cell[12136, 339, 858, 22, 62, "Text",ExpressionUUID->"d4f2fa04-8389-4bc1-97fa-df860d89eff0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13031, 366, 487, 9, 257, "Section",ExpressionUUID->"1715677f-a4aa-40e7-a323-b102d3e0d966"],
+Cell[13521, 377, 199, 3, 35, "Text",ExpressionUUID->"59417496-0230-40f3-9082-5600d36c25bd"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
