@@ -1,0 +1,308 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12052,        300]
+NotebookOptionsPosition[     10935,        273]
+NotebookOutlinePosition[     11330,        289]
+CellTagsIndexPosition[     11287,        286]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["4.3 Lyapunov exponents for the Lorenz model", "Title",
+ CellChangeTimes->{{3.91032156414779*^9, 
+  3.910321567209215*^9}},ExpressionUUID->"e5111118-4836-4da1-912c-\
+446568c8badb"],
+
+Cell[TextData[{
+ "The three-dimensional Lorenz flow is given by\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["x", "TI"], "."], "\[LongEqual]", "\[Sigma]", 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["y", "TI"], "-", 
+             StyleBox["x", "TI"]}], ")"}]}], TraditionalForm], "errors" -> {},
+      "input" -> "\\dot{x}= \\sigma(y-x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "cf7a15b5-c406-403d-87b2-c242fe4a1949"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["y", "TI"], "."], "\[LongEqual]", 
+         StyleBox["r", "TI"], 
+         StyleBox["x", "TI"], "-", 
+         StyleBox["y", "TI"], "-", 
+         StyleBox["x", "TI"], 
+         StyleBox["z", "TI"]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "\\dot{y}=rx-y-xz", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b232bf92-c6a6-4abb-8591-36b6f394607c"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         OverscriptBox[
+          StyleBox["z", "TI"], "."], "\[LongEqual]", 
+         StyleBox["x", "TI"], 
+         StyleBox["y", "TI"], "-", 
+         StyleBox["b", "TI"], 
+         StyleBox["z", "TI"]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "\\dot{z}=xy-bz", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4d2ddebe-a5bf-43b5-aa8e-2e2ccb55cc83"]
+}], "Section",
+ CellChangeTimes->{{3.910321417084024*^9, 
+  3.9103214587730227`*^9}},ExpressionUUID->"09a363f0-9235-4a66-9ef2-\
+dd5ce285dd04"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "a) Write a code that numerically computes the Lyapunov exponents for the \
+Lorenz attractor. You may find the following hints helpful:\n\nUse the \
+\[OpenCurlyDoubleQuote]cooking recipe\[CloseCurlyDoubleQuote] given in the \
+lecture notes (Section 11.5) to calculate Lyapunov exponents. Following this \
+method, you iterate the discretised equation for the deformation matrix. At \
+each time step you evaluate the Jacobian along your solution trajectory ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"(", 
+         RowBox[{
+           StyleBox["x", "TI"], 
+           RowBox[{"(", 
+             StyleBox["t", "TI"], ")"}], ",", 
+           StyleBox["y", "TI"], 
+           RowBox[{"(", 
+             StyleBox["t", "TI"], ")"}], ",", 
+           StyleBox["z", "TI"], 
+           RowBox[{"(", 
+             StyleBox["t", "TI"], ")"}]}], ")"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "(x(t),y(t),z(t))", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "01dea2c6-f089-4579-8b91-2c7328ae7766"],
+ ". The Lyapunov exponents are obtained from the diagonal elements of the ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["R", FontSlant -> "Plain"], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\mathrm{R}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1a469503-1e26-4a06-8406-e535ae5dae4c"],
+ "-matrix using the QR-decomposition method.\n\nYou may want to use the \
+built-in function \[OpenCurlyDoubleQuote]QRDecomposition[]\
+\[CloseCurlyDoubleQuote] in Mathematica. Read the documentation of that \
+function carefully. In particular, note that (at least in Mathematica Version \
+13 and below) it returns for a given matrix M the pair {",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["Q", "TI"], 
+          StyleBox["T", "TI"]], ",", 
+         StyleBox["R", "TI"]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "Q^T,R", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "5b2d2d90-73b4-4a88-822e-932cb07a48f6"],
+ "}.\n\nFor the parameter values studied by Lorenz and discussed in the \
+exercise \[OpenCurlyDoubleQuote]Introduction to the Lorenz model\
+\[CloseCurlyDoubleQuote], \[Sigma] = 10, b= 8 / 3, r = 28, the Lyapunov \
+exponents are approximately ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "1"], "\[TildeTilde]", "0.91", ",", 
+         SubscriptBox["\[Lambda]", "2"], "\[TildeTilde]", "0", ",", 
+         SubscriptBox["\[Lambda]", "3"], "\[TildeTilde]", "-14", ",", "57"}], 
+       TraditionalForm], "errors" -> {}, "input" -> 
+     "\\lambda_1 \\approx 0.91, \\lambda_2 \\approx 0, \\lambda_3 \\approx \
+-14,57", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9762eede-5139-4add-bedc-4ee2d11f6861"],
+ ".\n\nIn the exercise \[OpenCurlyDoubleQuote]Introduction to the Lorenz \
+model\[CloseCurlyDoubleQuote] you have derived an expression for the sum of \
+the Lyapunov exponents, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "1"], "+", 
+         SubscriptBox["\[Lambda]", "2"], "+", 
+         SubscriptBox["\[Lambda]", "3"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1+\\lambda_2+\\lambda_3", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9da26c21-38a9-4263-941b-a15f4bd7093a"],
+ "\:200b\:200b , for general parameter values. This expression is numerically \
+more stable than the results for the individual Lyapunov exponents and it is \
+very useful for checking that your code works properly.\n\nOnce you have a \
+working code, do test runs by solving the equations for a couple of hundred \
+time units.\n\nDiscard the initial transient of the solution as you did when \
+plotting the Lorenz attractor in the exercise \
+\[OpenCurlyDoubleQuote]Introduction to the Lorenz model\
+\[CloseCurlyDoubleQuote].\n\nWhen your test runs work well for the sum of \
+exponents and ok for individual exponents, you can try to get better results \
+by iterating for long times with short time step \n",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["d", "TI"], 
+         StyleBox["t", "TI"], "\[TildeTilde]", 
+         SuperscriptBox["10", "-3"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "dt \\approx 10^{-3}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "cae706c6-9dd6-4ad1-8fd3-d023a20b7342"],
+ ".\n\nHigh precision for the individual Lyapunov exponents is hard to \
+achieve and you will probably have to be satisfied with 2 \[Minus] 3 digits \
+of accuracy."
+}], "Section",
+ CellChangeTimes->{{3.910321464282819*^9, 3.910321491568964*^9}, {
+  3.91032153376194*^9, 3.910321549257423*^9}, {3.91034117611414*^9, 
+  3.910341415169849*^9}},ExpressionUUID->"f5d1de66-5305-43d0-b4a3-\
+798ab87533e2"],
+
+Cell[TextData[StyleBox["Read the hints!\nAlso section 11.5, 11.7",
+ FontWeight->"Bold"]], "Text",
+ CellChangeTimes->{
+  3.910345517632029*^9, {3.910346108650573*^9, 3.910346132400028*^9}, {
+   3.9103461629879293`*^9, 3.910346271294504*^9}, {3.910346351529441*^9, 
+   3.910346378170805*^9}, {3.9103465872371893`*^9, 
+   3.91034659867056*^9}},ExpressionUUID->"8f1bf4ae-462e-423b-a4ff-\
+3505d8c5ca22"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "b) Make a plot that shows the evolution of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "1"], 
+         RowBox[{"(", 
+           StyleBox["t", "TI"], ")"}], ",", 
+         SubscriptBox["\[Lambda]", "2"], 
+         RowBox[{"(", 
+           StyleBox["t", "TI"], ")"}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1(t),\\lambda_2(t)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "13122b4b-0f6e-4592-9b34-36d475f418d8"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "3"], "(", 
+         StyleBox["t", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_3(t)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "2b5d6526-8173-45a6-863b-f117b11d17bd"],
+ " as a function of time t, using a logarithmic scaling of the t-axis. First \
+choose ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["t", "TI"], "\[Element]", 
+         RowBox[{"[", 
+           RowBox[{"1", ",", 
+             SuperscriptBox["10", "3"]}], "]"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> "t \\in [1,10^{3}]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "99b605c1-498b-469a-9830-4c46dfdbf4d5"],
+ ". On the basis of this plot, decide whether or not your Lyapunov exponents \
+are converged. Let the dynamics run for longer time if you don\
+\[CloseCurlyQuote]t see convergence.\n",
+ StyleBox["Upload your final plot as .pdf or .png.",
+  FontSize->22,
+  FontSlant->"Italic"]
+}], "Section",
+ CellChangeTimes->{{3.910341424082919*^9, 
+  3.910341547965704*^9}},ExpressionUUID->"552f2a19-6e23-4f7a-b84a-\
+26c372288d0b"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.910345943878913*^9},ExpressionUUID->"1c893e5c-317c-4f33-9c7b-\
+c4980b89c6de"]
+}, Open  ]],
+
+Cell["\<\
+We now compute the Lyapunov exponents for a parameter set slightly different \
+from that of Lorenz.
+Set your parameters according to \[Sigma]=10, b= 19/6 and r=28.\
+\>", "Section",
+ CellChangeTimes->{{3.910342474639876*^9, 
+  3.910342493646741*^9}},ExpressionUUID->"09c01536-180b-488a-839f-\
+6e06808519e2"],
+
+Cell[TextData[{
+ "c) Make the same plot as in (b) for the new parameter set. On the basis of \
+this plot, decide whether or not your Lyapunov exponents are converged. Let \
+the dynamics run for longer time if you don\[CloseCurlyQuote]t see \
+convergence.\n",
+ StyleBox["Upload your final plot as .pdf or .png.",
+  FontSize->22]
+}], "Section",
+ CellChangeTimes->{{3.910342503732122*^9, 
+  3.910342527344592*^9}},ExpressionUUID->"8f121f00-563c-46df-934a-\
+a3a7688c8ddd"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{20, Automatic}, {Automatic, 44}},
+FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d7929890-b33e-48e0-ae5b-e0d60eb76a00"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 185, 3, 160, "Title",ExpressionUUID->"e5111118-4836-4da1-912c-446568c8badb"],
+Cell[768, 27, 1746, 47, 187, "Section",ExpressionUUID->"09a363f0-9235-4a66-9ef2-dd5ce285dd04"],
+Cell[CellGroupData[{
+Cell[2539, 78, 5145, 104, 1775, "Section",ExpressionUUID->"f5d1de66-5305-43d0-b4a3-798ab87533e2"],
+Cell[7687, 184, 398, 7, 58, "Text",ExpressionUUID->"8f1bf4ae-462e-423b-a4ff-3505d8c5ca22"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8122, 196, 1874, 47, 296, "Section",ExpressionUUID->"552f2a19-6e23-4f7a-b84a-26c372288d0b"],
+Cell[9999, 245, 118, 3, 35, "Text",ExpressionUUID->"1c893e5c-317c-4f33-9c7b-c4980b89c6de"]
+}, Open  ]],
+Cell[10132, 251, 316, 7, 143, "Section",ExpressionUUID->"09c01536-180b-488a-839f-6e06808519e2"],
+Cell[10451, 260, 468, 10, 198, "Section",ExpressionUUID->"8f121f00-563c-46df-934a-a3a7688c8ddd"]
+}, Open  ]]
+}
+]
+*)
+
