@@ -1,0 +1,730 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     26796,        722]
+NotebookOptionsPosition[     24881,        680]
+NotebookOutlinePosition[     25272,        696]
+CellTagsIndexPosition[     25229,        693]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["5.3 Renyi dimension of H\[EAcute]non map", "Title",
+ CellChangeTimes->{
+  3.910945929780283*^9, {3.9109516909650497`*^9, 
+   3.910951691170105*^9}},ExpressionUUID->"2e07d936-2d8f-489e-8602-\
+c794f21aab75"],
+
+Cell[TextData[{
+ "The H\[EAcute]non map is defined by the following recursion\n\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          RowBox[{
+            StyleBox["n", "TI"], "+", "1"}]], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["y", "TI"], 
+          StyleBox["n", "TI"]], "+", "1", "-", 
+         StyleBox["a", "TI"], 
+         SubsuperscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["n", "TI"], "2"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "x_{n+1}=y_n+1-ax^2_{n}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d85a6b72-95c6-42d7-aa65-7ec1d8a3dada"],
+ "\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["y", "TI"], 
+          RowBox[{
+            StyleBox["n", "TI"], "+", "1"}]], "\[LongEqual]", 
+         StyleBox["b", "TI"], 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["n", "TI"]]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "y_{n+1}=bx_n", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "f17b1ff5-a10f-4b20-b840-b224788e7763"],
+ "\n\nIterating an initial condition ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"(", 
+         RowBox[{
+           SubscriptBox[
+            StyleBox["x", "TI"], "0"], ",", 
+           SubscriptBox[
+            StyleBox["y", "TI"], "0"]}], ")"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "(x_0,y_0)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c9d57939-7b25-43bc-b9c6-540cdbcccaa4"],
+ " using the H\[EAcute]non map leads to a solution in the form of a sequence \
+of points in the plane (an orbit): ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         RowBox[{"(", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["x", "TI"], "0"], ",", 
+             SubscriptBox[
+              StyleBox["y", "TI"], "0"]}], ")"}], ",", 
+         RowBox[{"(", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["x", "TI"], "1"], ",", 
+             SubscriptBox[
+              StyleBox["y", "TI"], "1"]}], ")"}], ",", "\[Ellipsis]"}], 
+       TraditionalForm], "errors" -> {}, "input" -> 
+     "(x_0,y_0),(x_1,y_1),\\dots", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "28e82e40-18e0-412d-8a8e-608285fb1977"],
+ " . Just as for continuous dynamical systems, a discrete dynamical system \
+may have a strange attractor, but it can be of lower dimension than for \
+continuous systems. This makes it easier to analyze its fractal dimension. \
+Your task is to explore the H\[EAcute]non map for the values ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["a", "TI"], "\[LongEqual]", "1.4"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "a=1.4", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "fd10da35-80e4-4fe0-a532-1075863eb3cc"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["b", "TI"], "\[LongEqual]", "0.3"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "b=0.3", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "81e503e8-a442-4bb2-b03c-faebba50a56c"],
+ "."
+}], "Section",
+ CellChangeTimes->{{3.910945950206944*^9, 
+  3.91094610227606*^9}},ExpressionUUID->"87a69d73-5f78-452d-b1ff-\
+186e7fc6b26e"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+a) Plot an approximation of the fractal attractor by iterating the \
+H\[EAcute]non map a large number of times for different initial positions. \
+You may discard the initial transient as it is expected to lie too far from \
+the attractor.\
+\>", "Section",
+ CellChangeTimes->{{3.910946111031453*^9, 
+  3.910946130945752*^9}},ExpressionUUID->"2c145cf8-ef65-4b8d-9e49-\
+33a980b27e55"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.91094613533447*^9},ExpressionUUID->"619a753c-3d77-409d-87e5-39f4ef7665b8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "In the following exercises you are going to compute the fractal dimension \
+spectrum ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["q", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_q", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "7acfbdff-c424-4d34-a1cc-651364f24b63"],
+ "\:200b\:200b  for the H\[EAcute]non attractor. You may find the following \
+hints helpful:\nRecall that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["q", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_q", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d4aefc36-fa2b-475f-8ae0-aa6d6b5b2c68"],
+ " is a non-increasing function of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["q", "TI"], TraditionalForm], "errors" -> {}, "input" -> "q", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e1dd7c51-1054-4632-8353-cd1792313d09"],
+ ", which means that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["D", "TI"], 
+          StyleBox["q", "TI"]], "\[LessEqual]", 
+         SubscriptBox[
+          StyleBox["D", "TI"], 
+          SuperscriptBox[
+           StyleBox["q", "TI"], "\[Prime]"]]}], TraditionalForm], 
+     "errors" -> {}, "input" -> "D_q \\leq D_{q'}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "cb8f0081-7733-4fdc-8b55-4d5579920595"],
+ " if ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "\[GreaterEqual]", 
+         SuperscriptBox[
+          StyleBox["q", "TI"], "\[Prime]"]}], TraditionalForm], 
+     "errors" -> {}, "input" -> "q\\geq q'", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "63c8245e-def6-4b44-b235-a1c8a209f715"],
+ ".\nIf ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "\[LongEqual]", "1"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "q=1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "2e174a2b-6156-4332-9516-969f3897a932"],
+ " then ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["q", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_q", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "18e9a3ff-04e9-47b7-904f-0a8572362500"],
+ " attains the limit\n\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["D", "TI"], "1"], "\[LongEqual]", 
+         UnderscriptBox["lim", 
+          RowBox[{
+            StyleBox["q", "TI"], "\[Rule]", "1"}], LimitsPositioning -> True], 
+         SubscriptBox[
+          StyleBox["D", "TI"], 
+          StyleBox["q", "TI"]], "\[LongEqual]", 
+         UnderscriptBox["lim", 
+          RowBox[{"\[Epsilon]", "\[Rule]", "0"}], LimitsPositioning -> True], 
+         
+         FractionBox[
+          RowBox[{
+            UnderoverscriptBox["\[Sum]", 
+             RowBox[{
+               StyleBox["k", "TI"], "\[LongEqual]", "1"}], 
+             SubscriptBox[
+              StyleBox["N", "TI"], "boxes"], LimitsPositioning -> True], 
+            SubscriptBox[
+             StyleBox["p", "TI"], 
+             StyleBox["k", "TI"]], "ln", 
+            RowBox[{"(", 
+              SubscriptBox[
+               StyleBox["p", "TI"], 
+               StyleBox["k", "TI"]], ")"}]}], 
+          RowBox[{"ln", "(", "\[Epsilon]", ")"}]], " "}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "D_{1}=\\lim_{q\\to1}D_{q}=\\lim_{\\epsilon\\to0}\\frac{\\sum_{k=1}^{N_{\
+\\text{boxes}}}p_{k}\\ln(p_{k})}{\\ln(\\epsilon)}\\;", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "3c9a8e8e-4ab1-4aab-aa0d-b775f4a9372a"],
+ ".\nIf you are using Mathematica, you may want to use the function \
+BinCounts[] to bin your data. Using ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"2", "\[CenterDot]", 
+         SuperscriptBox["10", "6"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "2\\cdot 10^6", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "aa15c3b2-a61b-4627-99eb-41320b5eed8f"],
+ " data points with bin sizes ranging from ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SuperscriptBox["10", "-3"], TraditionalForm], "errors" -> {}, "input" -> 
+     "10^{-3}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "ba803bf8-b538-45d3-b65f-2bac3e69635c"],
+ " to ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"2", "\[CenterDot]", 
+         SuperscriptBox["10", "-2"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "2\\cdot 10^{-2}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "de6cde45-69c0-4873-84d2-cf5c2f38ca79"],
+ "\:200b\:200b  gives good results."
+}], "Section",
+ CellChangeTimes->{{3.910946140809268*^9, 3.910946314282876*^9}, {
+  3.910946386401012*^9, 
+  3.9109464533387823`*^9}},ExpressionUUID->"c857f94d-47b6-420a-a26a-\
+b4122b82a538"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.910946474009562*^9},ExpressionUUID->"1228ece7-49c8-440e-861b-\
+22f0e7ecef42"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "b) Make three plots against ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"ln", "(", 
+         RowBox[{"1", "/", "\[Epsilon]"}], ")"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "\\ln(1/\\epsilon)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "5b2f6555-b2ba-48f5-ad1c-db42ef2cdbe2"],
+ " in the range of \[Epsilon] stated in the hints above. The first two plots \
+show ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{"1", "-", 
+              StyleBox["q", "TI"]}], ")"}], "-1"], "ln", 
+         RowBox[{"[", 
+           RowBox[{
+             StyleBox["I", "TI"], "(", 
+             RowBox[{
+               StyleBox["q", "TI"], ",", "\[Epsilon]"}], ")"}], "]"}]}], 
+       TraditionalForm], "errors" -> {}, "input" -> 
+     "(1-q)^{-1}\\ln[I(q,\\epsilon)]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "15822292-351e-43a8-8cd1-d6fc053552d6"],
+ " for ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "\[LongEqual]", "0"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "q=0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "362699c9-b9ec-4a5b-9100-9bf1a55c509d"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "\[LongEqual]", "2"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "q=2", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "376cfd8a-79c4-4780-b9ec-11f95c178ebe"],
+ " and the last plot shows ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         UnderoverscriptBox["\[Sum]", 
+          RowBox[{
+            StyleBox["k", "TI"], "\[LongEqual]", "1"}], 
+          SubscriptBox[
+           StyleBox["N", "TI"], "boxes"], LimitsPositioning -> True], 
+         SubscriptBox[
+          StyleBox["p", "TI"], 
+          StyleBox["k", "TI"]], "ln", 
+         RowBox[{"(", 
+           RowBox[{"1", "/", 
+             SubscriptBox[
+              StyleBox["p", "TI"], 
+              StyleBox["k", "TI"]]}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "\\sum_{k=1}^{N_{\\text{boxes}}} p_{k}\\ln(1/p_{k})", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "0407316b-f5c2-43a6-908a-fb3205441fc7"],
+ ". You should see a linear slope in these three plots."
+}], "Section",
+ CellChangeTimes->{{3.9109464789005623`*^9, 3.910946488695684*^9}, {
+  3.910946538158725*^9, 3.91094654569453*^9}, {3.910946649011963*^9, 
+  3.9109467277284317`*^9}},ExpressionUUID->"41fa8350-4325-496c-bb3e-\
+1500f0ca4486"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.910946738645948*^9},ExpressionUUID->"0d9a87b0-0555-4841-9b50-\
+d3ca6faa713f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "c) Using the plots made in (b) compute estimates for ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], "0"], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "64eb7ede-891d-431c-9254-761a69fbae92"],
+ " (box-counting dimension), ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], "1"], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "f4b088ba-9291-4537-95db-52dedd08de31"],
+ " (information dimension) and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], "2"], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_2", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "de56205f-3476-4f64-ada6-00a973c4c818"],
+ " (correlation dimension) of the H\[EAcute]non attractor. Give your result \
+as the vector ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"[", 
+         RowBox[{
+           SubscriptBox[
+            StyleBox["D", "TI"], "0"], ",", 
+           SubscriptBox[
+            StyleBox["D", "TI"], "1"], ",", 
+           SubscriptBox[
+            StyleBox["D", "TI"], "2"]}], "]"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "[D_0,D_1,D_2]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "26953d24-2706-4fbd-8d52-1ab91713ed16"],
+ " with two decimal digits of accuracy."
+}], "Section",
+ CellChangeTimes->{
+  3.91094674865626*^9, {3.910951756494728*^9, 
+   3.910951832768753*^9}},ExpressionUUID->"e764a009-e7f9-4ed7-8ee7-\
+aed2dfd0f083"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.9109518393316174`*^9},ExpressionUUID->"2b067da7-4e4d-4e1c-9cf9-\
+1807710a8511"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "d) Make a graph of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["q", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_q", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e80b74ef-5493-47b6-a986-a97facdf54bf"],
+ " as a function of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["q", "TI"], TraditionalForm], "errors" -> {}, "input" -> "q", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "97985afb-787c-4e48-9457-5f1cb7831968"],
+ ", for ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "\[Element]", 
+         RowBox[{"[", 
+           RowBox[{"0", ",", "4"}], "]"}]}], TraditionalForm], "errors" -> {},
+      "input" -> "q\\in[0,4]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9c3c42dc-a250-4a2e-9e0c-c55547a7261f"],
+ " with at least 9 different values of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["q", "TI"], TraditionalForm], "errors" -> {}, "input" -> "q", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4abc4f6c-ff88-4470-84d2-4b1f661c579e"],
+ ". Your plot should confirm that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["q", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_q", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "5fd6973f-fb8c-4a71-9e2f-ae3d0c0ebbca"],
+ " is non-increasing (up to potential small deviations due to finite \
+resolution \[Epsilon]).\n\nNow compute the Lyapunov exponents ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox["\[Lambda]", "1"], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "7f1de88a-6dd9-47d1-9b9a-929bee903d87"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox["\[Lambda]", "2"], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_2", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1582e885-ae73-479d-bb32-862c136cab2d"],
+ "\:200b\:200b  for H\[EAcute]non map.\n\nHints:\nYou can use the discrete \
+version of the QR-decomposition procedure which is very similar to that used \
+for the Lyapunov exponents of the Lorenz model.\n\nThe dynamics in Eq. (1) is \
+discrete, meaning you do not have to discretize the dynamics to compute the \
+Stability matrix M:\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["M", FontSlant -> "Plain"], 
+         RowBox[{"(", 
+           SubscriptBox[
+            StyleBox["t", "TI"], 
+            RowBox[{
+              StyleBox["n", "TI"], "+", "1"}]], ")"}], "\[LongEqual]", 
+         StyleBox["J", FontSlant -> "Plain"], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", FontSlant -> "Bold"], "(", 
+             SubscriptBox[
+              StyleBox["t", "TI"], 
+              StyleBox["n", "TI"]], ")"}], ")"}], 
+         StyleBox["M", FontSlant -> "Plain"], 
+         RowBox[{"(", 
+           SubscriptBox[
+            StyleBox["t", "TI"], 
+            StyleBox["n", "TI"]], ")"}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> 
+     "\\mathrm{M}(t_{n+1})=\\mathrm{J}(\\mathbf{x}(t_{n}))\\mathrm{M}(t_{n})",
+      "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "13a0ebb3-7e25-4cd5-a7b3-23563fa77d86"],
+ "\n\t\t\nwhere J is the Jacobian of the right-hand side in Eq. (1). As a \
+comparison, after the discretization of a continuous dynamical system we had ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["M", FontSlant -> "Plain"], 
+         RowBox[{"(", 
+           SubscriptBox[
+            StyleBox["t", "TI"], 
+            RowBox[{
+              StyleBox["n", "TI"], "+", "1"}]], ")"}], "\[LongEqual]", 
+         RowBox[{"[", 
+           RowBox[{
+             StyleBox["I", FontSlant -> "Plain"], "+", "\[Delta]", 
+             StyleBox["t", "TI"], " ", 
+             StyleBox["J", FontSlant -> "Plain"], 
+             RowBox[{"(", 
+               RowBox[{
+                 StyleBox["x", FontSlant -> "Bold"], "(", 
+                 SubscriptBox[
+                  StyleBox["t", "TI"], 
+                  StyleBox["n", "TI"]], ")"}], ")"}]}], "]"}], 
+         StyleBox["M", FontSlant -> "Plain"], 
+         RowBox[{"(", 
+           SubscriptBox[
+            StyleBox["t", "TI"], 
+            StyleBox["n", "TI"]], ")"}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> 
+     "{\\mathbb{M}}(t_{n+1})=[\\mathbb{I}+\\delta \
+t\\,\\mathbb{J}(\\mathbf{x}(t_{n}))]{\\mathbb{M}}(t_{n})", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6026933f-f252-4647-81e5-9fc8dc1b37d5"],
+ ".\n\nWhen computing the Lyapunov dimensions ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["L", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_L", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "2c8499ce-b15f-420b-a45a-e27a28219300"],
+ " below, recall that the Kaplan-Yorke conjecture says that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["D", "TI"], 
+          StyleBox["L", "TI"]], "\[TildeTilde]", 
+         SubscriptBox[
+          StyleBox["D", "TI"], "1"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "D_L\\approx D_1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "96c71099-2aa2-4f53-ac1c-646dc77d7008"],
+ "\:200b\:200b ."
+}], "Section",
+ CellChangeTimes->{{3.9109518439030724`*^9, 3.910952020718129*^9}, {
+  3.910952076656499*^9, 3.910952095582168*^9}, {3.91095216845103*^9, 
+  3.910952226982172*^9}},ExpressionUUID->"935856e2-4e31-49c4-bb12-\
+0f4b60065117"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.9109522394254713`*^9},ExpressionUUID->"0d1bea55-25b1-4626-848b-\
+7171a3e5e106"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "e) Compute the Lyapunov exponents ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox["\[Lambda]", "1"], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4e11e15d-1691-4966-8e12-adfcaa77d263"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox["\[Lambda]", "2"], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_2", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6cc5c1b7-91a5-4135-85e5-c9d53e2b4c42"],
+ " numerically. Give your result as the ordered vector \n",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"[", 
+         RowBox[{
+           SubscriptBox["\[Lambda]", "1"], ",", 
+           SubscriptBox["\[Lambda]", "2"]}], "]"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "[\\lambda_1,\\lambda_2]", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "36f4ed02-42f1-470f-8cf0-9d516af22368"],
+ " with ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "1"], "\[GreaterEqual]", 
+         SubscriptBox["\[Lambda]", "2"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1 \\geq \\lambda_2", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "08bd1b4d-9c5d-4324-8437-de36b10bf394"],
+ " with two decimal digits accuracy. "
+}], "Section",
+ CellChangeTimes->{{3.91095224372462*^9, 3.9109523262971907`*^9}, {
+  3.910952567835863*^9, 
+  3.910952569372102*^9}},ExpressionUUID->"2ec58cf0-2065-4d64-bfac-\
+647ef4a4bb8b"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.910952573587751*^9},ExpressionUUID->"894f9b23-3f25-4713-a1b5-\
+f17e9b77d433"]
+}, Open  ]],
+
+Cell[TextData[{
+ "f) Using the Lyapunov exponents computed above, calculate the Lyapunov \
+dimension ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["D", "TI"], 
+        StyleBox["L", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "D_L", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8202ffb1-202c-434f-894f-05107339ffde"],
+ ". Give your result with two decimal digits accuracy."
+}], "Section",
+ CellChangeTimes->{{3.910952578183772*^9, 
+  3.9109525884039392`*^9}},ExpressionUUID->"9d8a7eae-352a-4cc3-86f4-\
+d6052e94fbfd"]
+}, Open  ]]
+},
+WindowSize->{756, 916},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"0cb9288f-2d1f-4eca-864b-69a85a454b5a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 211, 4, 98, "Title",ExpressionUUID->"2e07d936-2d8f-489e-8602-c794f21aab75"],
+Cell[794, 28, 3686, 96, 533, "Section",ExpressionUUID->"87a69d73-5f78-452d-b1ff-186e7fc6b26e"],
+Cell[CellGroupData[{
+Cell[4505, 128, 391, 8, 167, "Section",ExpressionUUID->"2c145cf8-ef65-4b8d-9e49-33a980b27e55"],
+Cell[4899, 138, 115, 2, 35, "Text",ExpressionUUID->"619a753c-3d77-409d-87e5-39f4ef7665b8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5051, 145, 5573, 144, 508, "Section",ExpressionUUID->"c857f94d-47b6-420a-a26a-b4122b82a538"],
+Cell[10627, 291, 118, 3, 35, "Text",ExpressionUUID->"1228ece7-49c8-440e-861b-22f0e7ecef42"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10782, 299, 2863, 74, 271, "Section",ExpressionUUID->"41fa8350-4325-496c-bb3e-1500f0ca4486"],
+Cell[13648, 375, 118, 3, 35, "Text",ExpressionUUID->"0d9a87b0-0555-4841-9b50-d3ca6faa713f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13803, 383, 1871, 49, 227, "Section",ExpressionUUID->"e764a009-e7f9-4ed7-8ee7-aed2dfd0f083"],
+Cell[15677, 434, 120, 3, 35, "Text",ExpressionUUID->"2b067da7-4e4d-4e1c-9cf9-1807710a8511"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15834, 442, 6341, 158, 958, "Section",ExpressionUUID->"935856e2-4e31-49c4-bb12-0f4b60065117"],
+Cell[22178, 602, 120, 3, 35, "Text",ExpressionUUID->"0d1bea55-25b1-4626-848b-7171a3e5e106"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22335, 610, 1761, 43, 147, "Section",ExpressionUUID->"2ec58cf0-2065-4d64-bfac-647ef4a4bb8b"],
+Cell[24099, 655, 118, 3, 35, "Text",ExpressionUUID->"894f9b23-3f25-4713-a1b5-f17e9b77d433"]
+}, Open  ]],
+Cell[24232, 661, 633, 16, 145, "Section",ExpressionUUID->"9d8a7eae-352a-4cc3-86f4-d6052e94fbfd"]
+}, Open  ]]
+}
+]
+*)
+

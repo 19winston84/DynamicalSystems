@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12052,        300]
-NotebookOptionsPosition[     10935,        273]
-NotebookOutlinePosition[     11330,        289]
-CellTagsIndexPosition[     11287,        286]
+NotebookDataLength[     60002,       1561]
+NotebookOptionsPosition[     57237,       1504]
+NotebookOutlinePosition[     57686,       1522]
+CellTagsIndexPosition[     57643,       1519]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -81,7 +81,7 @@ Cell[TextData[{
 Lorenz attractor. You may find the following hints helpful:\n\nUse the \
 \[OpenCurlyDoubleQuote]cooking recipe\[CloseCurlyDoubleQuote] given in the \
 lecture notes (Section 11.5) to calculate Lyapunov exponents. Following this \
-method, you iterate the discretised equation for the deformation matrix. At \
+method, you iterate the discretized equation for the deformation matrix. At \
 each time step you evaluate the Jacobian along your solution trajectory ",
  Cell[BoxData[
   FormBox[
@@ -178,8 +178,9 @@ achieve and you will probably have to be satisfied with 2 \[Minus] 3 digits \
 of accuracy."
 }], "Section",
  CellChangeTimes->{{3.910321464282819*^9, 3.910321491568964*^9}, {
-  3.91032153376194*^9, 3.910321549257423*^9}, {3.91034117611414*^9, 
-  3.910341415169849*^9}},ExpressionUUID->"f5d1de66-5305-43d0-b4a3-\
+   3.91032153376194*^9, 3.910321549257423*^9}, {3.91034117611414*^9, 
+   3.910341415169849*^9}, 
+   3.9109479506637707`*^9},ExpressionUUID->"f5d1de66-5305-43d0-b4a3-\
 798ab87533e2"],
 
 Cell[TextData[StyleBox["Read the hints!\nAlso section 11.5, 11.7",
@@ -187,9 +188,306 @@ Cell[TextData[StyleBox["Read the hints!\nAlso section 11.5, 11.7",
  CellChangeTimes->{
   3.910345517632029*^9, {3.910346108650573*^9, 3.910346132400028*^9}, {
    3.9103461629879293`*^9, 3.910346271294504*^9}, {3.910346351529441*^9, 
-   3.910346378170805*^9}, {3.9103465872371893`*^9, 
-   3.91034659867056*^9}},ExpressionUUID->"8f1bf4ae-462e-423b-a4ff-\
-3505d8c5ca22"]
+   3.910346378170805*^9}, {3.9103465872371893`*^9, 3.91034659867056*^9}, {
+   3.91094790486073*^9, 3.9109479075820417`*^9}, {3.91121285403881*^9, 
+   3.9112128543651123`*^9}},ExpressionUUID->"8f1bf4ae-462e-423b-a4ff-\
+3505d8c5ca22"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Lorenz", " ", "variables"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Sigma]", " ", "=", " ", "10"}], ";"}], "  "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", " ", "=", " ", "28"}], ";"}], "  "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", " ", "=", " ", 
+    RowBox[{"8", "/", "3"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Differential", " ", "equation", " ", "system"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Equation1", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{"\[Sigma]", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"y", "[", "t", "]"}], " ", "-", " ", 
+       RowBox[{"x", "[", "t", "]"}]}], ")"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Equation2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{
+     RowBox[{"r", "*", 
+      RowBox[{"x", "[", "t", "]"}]}], " ", "-", " ", 
+     RowBox[{"y", "[", "t", "]"}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], "*", 
+      RowBox[{"z", "[", "t", "]"}]}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Equation3", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"z", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], "*", 
+      RowBox[{"y", "[", "t", "]"}]}], " ", "-", " ", 
+     RowBox[{"b", "*", 
+      RowBox[{"z", "[", "t", "]"}]}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"System", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"Equation1", ",", " ", "Equation2", ",", " ", "Equation3"}], 
+     "}"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Fixed", " ", "points", " ", "of", " ", "the", " ", "differential", " ", 
+    "equation", " ", "system"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FixedPoint1", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"eta", " ", "=", " ", "0.001"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"t0", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"tMax", " ", "=", " ", "1000"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stepSize", " ", "=", " ", "0.001"}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Starting", " ", "point", " ", "of", " ", "the", " ", "trajectory", " ", 
+    RowBox[{"(", 
+     RowBox[{
+     "distance", " ", "from", " ", "fixed", " ", "points", " ", "handled", 
+      " ", "via", " ", "eta"}], ")"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StartingPoint", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], " ", "+", " ", "eta"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"y", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], " ", "+", " ", "eta"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"z", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], " ", "+", " ", "eta"}]}]}], "}"}]}], 
+   ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Solution", " ", "using", " ", "NDSolve", " ", "with", " ", "specified", 
+    " ", "step", " ", "size"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Solution", " ", "=", " ", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"System", ",", " ", "StartingPoint"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", " ", "t0", ",", " ", "tMax"}], "}"}]}], "]"}]}], 
+   ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"xFunction", " ", "=", " ", 
+   RowBox[{"x", " ", "/.", " ", 
+    RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"yFunction", " ", "=", " ", 
+   RowBox[{"y", " ", "/.", " ", 
+    RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zFunction", " ", "=", " ", 
+    RowBox[{"z", " ", "/.", " ", 
+     RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Initialize", " ", "parameters"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"lambda1", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lambda2", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lambda3", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Qold", " ", "=", " ", 
+    RowBox[{"IdentityMatrix", "[", "3", "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Preallocate", " ", "lambdaValues", " ", "matrix"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"numIterations", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"Ceiling", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"tMax", " ", "-", " ", "0.001"}], ")"}], "/", "stepSize"}], 
+     "]"}], " ", "+", " ", "1"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambdaValues", " ", "=", " ", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"0", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"numIterations", ",", " ", "4"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"i", " ", "=", " ", "1"}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Create", " ", "the", " ", "loop", " ", "with", " ", "Monitor"}], 
+   " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Monitor", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"t", " ", "=", " ", "0.001"}], ",", " ", 
+      RowBox[{"t", " ", "<=", " ", "tMax"}], ",", " ", 
+      RowBox[{"t", " ", "+=", " ", "stepSize"}], ",", "\n", "        ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Jacobian", " ", "matrix"}], " ", "*)"}], "\n", "        ", 
+      RowBox[{
+       RowBox[{"jacobianMatrix", " ", "=", " ", 
+        RowBox[{"{", "\n", "            ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "\[Sigma]"}], ",", " ", "\[Sigma]", ",", " ", "0"}], 
+           "}"}], ",", "\n", "            ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"r", " ", "-", " ", 
+             RowBox[{"zFunction", "[", "t", "]"}]}], ",", " ", 
+            RowBox[{"-", "1"}], ",", " ", 
+            RowBox[{"-", 
+             RowBox[{"xFunction", "[", "t", "]"}]}]}], "}"}], ",", "\n", 
+          "            ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"yFunction", "[", "t", "]"}], ",", " ", 
+            RowBox[{"xFunction", "[", "t", "]"}], ",", " ", 
+            RowBox[{"-", "b"}]}], "}"}]}], "\n", "        ", "}"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"M", " ", "matrix"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{"M", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"IdentityMatrix", "[", "3", "]"}], " ", "+", " ", 
+         RowBox[{"jacobianMatrix", " ", "*", " ", "stepSize"}]}]}], ";", "\n",
+        "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"QR", " ", "decomposition"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{"valuesQR", " ", "=", " ", 
+        RowBox[{"QRDecomposition", "[", 
+         RowBox[{"M", " ", ".", " ", "Qold"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"Qold", " ", "=", " ", 
+        RowBox[{"Transpose", "[", 
+         RowBox[{"valuesQR", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"Rold", " ", "=", " ", 
+        RowBox[{"valuesQR", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Update", " ", "Lyapunov", " ", "exponents"}], " ", "*)"}], 
+       "\n", "        ", 
+       RowBox[{"lambda1", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", " ", "1"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"lambda2", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ",", " ", "2"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"lambda3", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"3", ",", " ", "3"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Assign", " ", "values", " ", "to", " ", "lambdaValues", " ", 
+         "matrix"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{
+        RowBox[{"lambdaValues", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", 
+          RowBox[{"lambda1", "/", "t"}], ",", " ", 
+          RowBox[{"lambda2", "/", "t"}], ",", " ", 
+          RowBox[{"lambda3", "/", "t"}]}], "}"}]}], ";", "\n", "        ", 
+       RowBox[{"i", "++"}], ";"}]}], "\n", "    ", "]"}], ",", "\n", "    ", 
+    RowBox[{"ProgressIndicator", "[", 
+     RowBox[{"t", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0.001", ",", " ", "tMax"}], "}"}]}], "]"}]}], "\n", "]"}], 
+  "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Output", " ", "results"}], " ", "*)"}]}], "\n", 
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"lambda1", "/", "tMax"}], ",", " ", 
+   RowBox[{"lambda2", "/", "tMax"}], ",", " ", 
+   RowBox[{"lambda3", "/", "tMax"}]}], "}"}]}], "Code",
+ CellChangeTimes->{{3.9112141285506144`*^9, 3.911214171293585*^9}, {
+   3.911214324179223*^9, 3.911214403714156*^9}, {3.9112145385324917`*^9, 
+   3.911214542862595*^9}, {3.9112145740811462`*^9, 3.9112145891162243`*^9}, {
+   3.91121464309969*^9, 3.911214715594956*^9}, {3.911215047188025*^9, 
+   3.911215072069832*^9}, {3.911215168216586*^9, 3.911215218963972*^9}, {
+   3.911215526496201*^9, 3.9112155295036917`*^9}, {3.91121569070754*^9, 
+   3.9112157072627707`*^9}, {3.911215776846752*^9, 3.911215830081408*^9}, {
+   3.911215889011468*^9, 3.911215894904503*^9}, {3.9112159565888157`*^9, 
+   3.911215973506439*^9}, {3.911216251635717*^9, 3.911216259556809*^9}, {
+   3.9112200781954803`*^9, 3.911220079244199*^9}, {3.911223871760831*^9, 
+   3.91122389131415*^9}, {3.911225331712523*^9, 3.911225342308928*^9}, 
+   3.911225411572772*^9, {3.9112294805473137`*^9, 
+   3.911229482890028*^9}},ExpressionUUID->"ab474fa4-1647-45a6-89f3-\
+01fc4254f756"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.9428752482196884`", ",", "0.02970297572948533`", ",", 
+   RowBox[{"-", "14.676003279878678`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.911225479067644*^9},
+ CellLabel->
+  "Out[178]=",ExpressionUUID->"71452575-95b5-43cf-b44b-2a54f70ce4d1"]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -243,20 +541,97 @@ are converged. Let the dynamics run for longer time if you don\
   3.910341547965704*^9}},ExpressionUUID->"552f2a19-6e23-4f7a-b84a-\
 26c372288d0b"],
 
-Cell["", "Text",
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Filter", " ", "values", " ", "where", " ", "t"}], " ", ">=", " ",
+     "1"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"filteredLambdaValues", " ", "=", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{"lambdaValues", ",", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"First", "[", "#", "]"}], " ", ">=", " ", "1"}], " ", 
+        "&"}]}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Extracting", " ", "lambda", " ", "values"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"lambda1Values", " ", "=", " ", 
+     RowBox[{"filteredLambdaValues", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "2"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"t", " ", "and", " ", 
+     RowBox[{"lambda1", "/", "t"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"lambda2Values", " ", "=", " ", 
+     RowBox[{"filteredLambdaValues", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "3"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"t", " ", "and", " ", 
+     RowBox[{"lambda2", "/", "t"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"lambda3Values", " ", "=", " ", 
+     RowBox[{"filteredLambdaValues", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "4"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"t", " ", "and", " ", 
+     RowBox[{"lambda3", "/", "t"}]}], " ", "*)"}], "\n", "\n", 
+   RowBox[{"(*", " ", "Plotting", " ", "*)"}], "\n", 
+   RowBox[{"ListLogLinearPlot", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "lambda1Values", ",", " ", "lambda2Values", ",", " ", "lambda3Values"}],
+       "}"}], ",", "\n", "    ", 
+     RowBox[{"PlotLegends", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\[Lambda]1\>\"", ",", " ", "\"\<\[Lambda]2\>\"", ",", " ", 
+        "\"\<\[Lambda]3\>\""}], "}"}]}], ",", "\n", "    ", 
+     RowBox[{"AxesLabel", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Log(t)\>\"", ",", " ", "\"\<Lambda values\>\""}], "}"}]}],
+      ",", "\n", "    ", 
+     RowBox[{
+     "PlotLabel", " ", "->", " ", 
+      "\"\<For e) Lambda values vs. Log(Time)\>\""}], ",", "\n", "    ", 
+     RowBox[{"PlotRange", " ", "->", " ", "All"}], ",", "\n", "    ", 
+     RowBox[{"PlotStyle", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", " ", "Green", ",", " ", "Blue"}], "}"}]}]}], "\n", 
+    "]"}]}]}]], "Code",
  CellChangeTimes->{
-  3.910345943878913*^9},ExpressionUUID->"1c893e5c-317c-4f33-9c7b-\
-c4980b89c6de"]
+  3.911215577257772*^9, {3.9112160228922787`*^9, 3.9112160929557533`*^9}, {
+   3.9112161901189423`*^9, 3.911216194010199*^9}, {3.911216738329322*^9, 
+   3.911216741616708*^9}, {3.911220140934084*^9, 3.9112201467515297`*^9}, 
+   3.911225370053796*^9},
+ CellLabel->
+  "In[179]:=",ExpressionUUID->"89b69be0-b1d2-46cf-bfbe-f073d1f1e21c"]
 }, Open  ]],
 
 Cell["\<\
 We now compute the Lyapunov exponents for a parameter set slightly different \
 from that of Lorenz.
-Set your parameters according to \[Sigma]=10, b= 19/6 and r=28.\
+Set your parameters according to \[Sigma] = 10, b = 19/6 and r = 28.\
 \>", "Section",
- CellChangeTimes->{{3.910342474639876*^9, 
-  3.910342493646741*^9}},ExpressionUUID->"09c01536-180b-488a-839f-\
+ CellChangeTimes->{{3.910342474639876*^9, 3.910342493646741*^9}, {
+  3.91094778460634*^9, 
+  3.9109477885672483`*^9}},ExpressionUUID->"09c01536-180b-488a-839f-\
 6e06808519e2"],
+
+Cell[CellGroupData[{
 
 Cell[TextData[{
  "c) Make the same plot as in (b) for the new parameter set. On the basis of \
@@ -268,11 +643,869 @@ convergence.\n",
 }], "Section",
  CellChangeTimes->{{3.910342503732122*^9, 
   3.910342527344592*^9}},ExpressionUUID->"8f121f00-563c-46df-934a-\
-a3a7688c8ddd"]
+a3a7688c8ddd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Lorenz", " ", "variables"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Sigma]", " ", "=", " ", "10"}], ";"}], "  "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", " ", "=", " ", "28"}], ";"}], "  "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", " ", "=", " ", 
+    RowBox[{"19", "/", "6"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Differential", " ", "equation", " ", "system"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Equation1", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{"\[Sigma]", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"y", "[", "t", "]"}], " ", "-", " ", 
+       RowBox[{"x", "[", "t", "]"}]}], ")"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Equation2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{
+     RowBox[{"r", "*", 
+      RowBox[{"x", "[", "t", "]"}]}], " ", "-", " ", 
+     RowBox[{"y", "[", "t", "]"}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], "*", 
+      RowBox[{"z", "[", "t", "]"}]}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Equation3", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"z", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], "*", 
+      RowBox[{"y", "[", "t", "]"}]}], " ", "-", " ", 
+     RowBox[{"b", "*", 
+      RowBox[{"z", "[", "t", "]"}]}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"System", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"Equation1", ",", " ", "Equation2", ",", " ", "Equation3"}], 
+     "}"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Fixed", " ", "points", " ", "of", " ", "the", " ", "differential", " ", 
+    "equation", " ", "system"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FixedPoint1", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"eta", " ", "=", " ", "0.001"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"t0", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"tMax", " ", "=", " ", "1000"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stepSize", " ", "=", " ", "0.001"}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Starting", " ", "point", " ", "of", " ", "the", " ", "trajectory", " ", 
+    RowBox[{"(", 
+     RowBox[{
+     "distance", " ", "from", " ", "fixed", " ", "points", " ", "handled", 
+      " ", "via", " ", "eta"}], ")"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StartingPoint", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], " ", "+", " ", "eta"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"y", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], " ", "+", " ", "eta"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"z", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], " ", "+", " ", "eta"}]}]}], "}"}]}], 
+   ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Solution", " ", "using", " ", "NDSolve", " ", "with", " ", "specified", 
+    " ", "step", " ", "size"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Solution", " ", "=", " ", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"System", ",", " ", "StartingPoint"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", " ", "t0", ",", " ", "tMax"}], "}"}]}], "]"}]}], 
+   ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"xFunction", " ", "=", " ", 
+   RowBox[{"x", " ", "/.", " ", 
+    RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"yFunction", " ", "=", " ", 
+   RowBox[{"y", " ", "/.", " ", 
+    RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zFunction", " ", "=", " ", 
+    RowBox[{"z", " ", "/.", " ", 
+     RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Initialize", " ", "parameters"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"lambda1", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lambda2", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lambda3", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Qold", " ", "=", " ", 
+    RowBox[{"IdentityMatrix", "[", "3", "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Preallocate", " ", "lambdaValues", " ", "matrix"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"numIterations", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"Ceiling", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"tMax", " ", "-", " ", "0.001"}], ")"}], "/", "stepSize"}], 
+     "]"}], " ", "+", " ", "1"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambdaValues", " ", "=", " ", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"0", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"numIterations", ",", " ", "4"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"i", " ", "=", " ", "1"}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Create", " ", "the", " ", "loop", " ", "with", " ", "Monitor"}], 
+   " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Monitor", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"t", " ", "=", " ", "0.001"}], ",", " ", 
+      RowBox[{"t", " ", "<=", " ", "tMax"}], ",", " ", 
+      RowBox[{"t", " ", "+=", " ", "stepSize"}], ",", "\n", "        ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Jacobian", " ", "matrix"}], " ", "*)"}], "\n", "        ", 
+      RowBox[{
+       RowBox[{"jacobianMatrix", " ", "=", " ", 
+        RowBox[{"{", "\n", "            ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "\[Sigma]"}], ",", " ", "\[Sigma]", ",", " ", "0"}], 
+           "}"}], ",", "\n", "            ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"r", " ", "-", " ", 
+             RowBox[{"zFunction", "[", "t", "]"}]}], ",", " ", 
+            RowBox[{"-", "1"}], ",", " ", 
+            RowBox[{"-", 
+             RowBox[{"xFunction", "[", "t", "]"}]}]}], "}"}], ",", "\n", 
+          "            ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"yFunction", "[", "t", "]"}], ",", " ", 
+            RowBox[{"xFunction", "[", "t", "]"}], ",", " ", 
+            RowBox[{"-", "b"}]}], "}"}]}], "\n", "        ", "}"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"M", " ", "matrix"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{"M", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"IdentityMatrix", "[", "3", "]"}], " ", "+", " ", 
+         RowBox[{"jacobianMatrix", " ", "*", " ", "stepSize"}]}]}], ";", "\n",
+        "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"QR", " ", "decomposition"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{"valuesQR", " ", "=", " ", 
+        RowBox[{"QRDecomposition", "[", 
+         RowBox[{"M", " ", ".", " ", "Qold"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"Qold", " ", "=", " ", 
+        RowBox[{"Transpose", "[", 
+         RowBox[{"valuesQR", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"Rold", " ", "=", " ", 
+        RowBox[{"valuesQR", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Update", " ", "Lyapunov", " ", "exponents"}], " ", "*)"}], 
+       "\n", "        ", 
+       RowBox[{"lambda1", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", " ", "1"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"lambda2", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ",", " ", "2"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"lambda3", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"3", ",", " ", "3"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Assign", " ", "values", " ", "to", " ", "lambdaValues", " ", 
+         "matrix"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{
+        RowBox[{"lambdaValues", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", 
+          RowBox[{"lambda1", "/", "t"}], ",", " ", 
+          RowBox[{"lambda2", "/", "t"}], ",", " ", 
+          RowBox[{"lambda3", "/", "t"}]}], "}"}]}], ";", "\n", "        ", 
+       RowBox[{"i", "++"}], ";"}]}], "\n", "    ", "]"}], ",", "\n", "    ", 
+    RowBox[{"ProgressIndicator", "[", 
+     RowBox[{"t", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0.001", ",", " ", "tMax"}], "}"}]}], "]"}]}], "\n", "]"}], 
+  "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Output", " ", "results"}], " ", "*)"}]}], "\n", 
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"lambda1", "/", "tMax"}], ",", " ", 
+   RowBox[{"lambda2", "/", "tMax"}], ",", " ", 
+   RowBox[{"lambda3", "/", "tMax"}]}], "}"}]}], "Code",
+ CellChangeTimes->{{3.911216324190585*^9, 3.9112163467321978`*^9}, 
+   3.911219960390071*^9, {3.91122391975718*^9, 3.911223935541725*^9}, {
+   3.911225309186503*^9, 3.911225325039752*^9}, 3.911225428080597*^9, {
+   3.911225928374074*^9, 3.911225929343088*^9}, {3.911229423565424*^9, 
+   3.911229426362834*^9}},ExpressionUUID->"200b761b-6cad-445f-b6d2-\
+cc2969f276fe"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.9837822615955131`", ",", "0.03188729823408508`", ",", 
+   RowBox[{"-", "15.220284774525313`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.911225535438699*^9, 3.911226164559745*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"33ffd551-faaf-4b7e-9364-7292d47db033"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Filter", " ", "values", " ", "where", " ", "t"}], " ", ">=", " ",
+     "1"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"filteredLambdaValues", " ", "=", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{"lambdaValues", ",", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"First", "[", "#", "]"}], " ", ">=", " ", "1"}], " ", 
+        "&"}]}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Extracting", " ", "lambda", " ", "values"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"lambda1Values", " ", "=", " ", 
+     RowBox[{"filteredLambdaValues", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "2"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"t", " ", "and", " ", 
+     RowBox[{"lambda1", "/", "t"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"lambda2Values", " ", "=", " ", 
+     RowBox[{"filteredLambdaValues", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "3"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"t", " ", "and", " ", 
+     RowBox[{"lambda2", "/", "t"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"lambda3Values", " ", "=", " ", 
+     RowBox[{"filteredLambdaValues", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", "4"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"t", " ", "and", " ", 
+     RowBox[{"lambda3", "/", "t"}]}], " ", "*)"}], "\n", "\n", 
+   RowBox[{"(*", " ", "Plotting", " ", "*)"}], "\n", 
+   RowBox[{"ListLogLinearPlot", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "lambda1Values", ",", " ", "lambda2Values", ",", " ", "lambda3Values"}],
+       "}"}], ",", "\n", "    ", 
+     RowBox[{"PlotLegends", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\[Lambda]1\>\"", ",", " ", "\"\<\[Lambda]2\>\"", ",", " ", 
+        "\"\<\[Lambda]3\>\""}], "}"}]}], ",", "\n", "    ", 
+     RowBox[{"AxesLabel", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Log(t)\>\"", ",", " ", "\"\<Lambda values\>\""}], "}"}]}],
+      ",", "\n", "    ", 
+     RowBox[{
+     "PlotLabel", " ", "->", " ", 
+      "\"\<For e) Lambda values vs. Log(Time)\>\""}], ",", "\n", "    ", 
+     RowBox[{"PlotRange", " ", "->", " ", "All"}], ",", "\n", "    ", 
+     RowBox[{"PlotStyle", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", " ", "Green", ",", " ", "Blue"}], "}"}]}]}], "\n", 
+    "]"}]}]}]], "Code",
+ CellChangeTimes->{
+  3.9112163388891068`*^9, {3.911216722401935*^9, 3.911216733978511*^9}, {
+   3.9112168009686613`*^9, 3.911216803008319*^9}, {3.91121761516546*^9, 
+   3.911217622062735*^9}, 3.911225364658218*^9},
+ CellLabel->
+  "In[211]:=",ExpressionUUID->"5d416a1c-f6a1-4806-8aaa-2fbaf56103b2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "d) Give your (converged) result for the Lyapunov exponents with the new \
+parameters as the ordered vector ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"[", 
+         RowBox[{
+           SubscriptBox["\[Lambda]", "1"], ",", 
+           SubscriptBox["\[Lambda]", "2"], ",", 
+           SubscriptBox["\[Lambda]", "3"]}], "]"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "[\\lambda_1,\\lambda_2, \\lambda_3]", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9533affb-c86a-4fc9-9e72-2adaa2208be1"],
+ " with \:200b\:200b ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "1"], "\[GreaterEqual]", 
+         SubscriptBox["\[Lambda]", "1"], "\[GreaterEqual]", 
+         SubscriptBox["\[Lambda]", "3"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1 \\geq \\lambda_1 \\geq \\lambda_3", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "a6d45d5b-1f94-4c28-8464-82ddd016d59b"],
+ ". Provide two decimal digits of accuracy."
+}], "Section",
+ CellChangeTimes->{{3.911216389915915*^9, 
+  3.911216455267332*^9}},ExpressionUUID->"857967bb-8422-4997-9444-\
+41460fe44a4e"],
+
+Cell["See output of c).", "Text",
+ CellChangeTimes->{{3.9112164841263733`*^9, 
+  3.911216500905191*^9}},ExpressionUUID->"07e7ee2e-faf7-47f0-a75f-\
+ac17b4e43780"]
+}, Open  ]],
+
+Cell["\<\
+We change the parameters again, now to very different values. Set your \
+parameters according to \[Sigma]=16, b=5 and r=330. You may want to plot the \
+attractor for the new parameters in order to know, what the attracting set \
+looks like now, but you do not need to upload that plot.\
+\>", "Section",
+ CellChangeTimes->{{3.911216521002219*^9, 
+  3.9112165301853743`*^9}},ExpressionUUID->"d543a393-afd4-4ee0-add6-\
+f5b71a08b16a"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+e) Make the same plot as in (b) and (c) for the third parameter set. On the \
+basis of this plot, decide whether or not your Lyapunov exponents are \
+converged. Let the dynamics run for longer time if you don\[CloseCurlyQuote]t \
+see convergence.\
+\>", "Section",
+ CellChangeTimes->{{3.911216554024275*^9, 
+  3.9112165551818647`*^9}},ExpressionUUID->"faf5525f-31e9-4cf9-8247-\
+02a3dd6c5615"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Lorenz", " ", "variables"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Sigma]", " ", "=", " ", "16"}], ";"}], "  "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", " ", "=", " ", "330"}], ";"}], "  "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", " ", "=", " ", "5"}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Differential", " ", "equation", " ", "system"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Equation1", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{"\[Sigma]", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"y", "[", "t", "]"}], " ", "-", " ", 
+       RowBox[{"x", "[", "t", "]"}]}], ")"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Equation2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{
+     RowBox[{"r", "*", 
+      RowBox[{"x", "[", "t", "]"}]}], " ", "-", " ", 
+     RowBox[{"y", "[", "t", "]"}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], "*", 
+      RowBox[{"z", "[", "t", "]"}]}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Equation3", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"z", "'"}], "[", "t", "]"}], " ", "==", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], "*", 
+      RowBox[{"y", "[", "t", "]"}]}], " ", "-", " ", 
+     RowBox[{"b", "*", 
+      RowBox[{"z", "[", "t", "]"}]}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"System", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"Equation1", ",", " ", "Equation2", ",", " ", "Equation3"}], 
+     "}"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Fixed", " ", "points", " ", "of", " ", "the", " ", "differential", " ", 
+    "equation", " ", "system"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FixedPoint1", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"eta", " ", "=", " ", "0.001"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"t0", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"tMax", " ", "=", " ", "1000"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stepSize", " ", "=", " ", "0.0001"}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Starting", " ", "point", " ", "of", " ", "the", " ", "trajectory", " ", 
+    RowBox[{"(", 
+     RowBox[{
+     "distance", " ", "from", " ", "fixed", " ", "points", " ", "handled", 
+      " ", "via", " ", "eta"}], ")"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StartingPoint", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], " ", "+", " ", "eta"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"y", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], " ", "+", " ", "eta"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"z", "[", "0", "]"}], " ", "==", " ", 
+       RowBox[{
+        RowBox[{"FixedPoint1", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], " ", "+", " ", "eta"}]}]}], "}"}]}], 
+   ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Solution", " ", "using", " ", "NDSolve", " ", "with", " ", "specified", 
+    " ", "step", " ", "size"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Solution", " ", "=", " ", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"System", ",", " ", "StartingPoint"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", " ", "t0", ",", " ", "tMax"}], "}"}]}], "]"}]}], 
+   ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"xFunction", " ", "=", " ", 
+   RowBox[{"x", " ", "/.", " ", 
+    RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"yFunction", " ", "=", " ", 
+   RowBox[{"y", " ", "/.", " ", 
+    RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zFunction", " ", "=", " ", 
+    RowBox[{"z", " ", "/.", " ", 
+     RowBox[{"First", "[", "Solution", "]"}]}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Initialize", " ", "parameters"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"lambda1", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lambda2", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lambda3", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Qold", " ", "=", " ", 
+    RowBox[{"IdentityMatrix", "[", "3", "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Preallocate", " ", "lambdaValues", " ", "matrix"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"numIterations", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"Ceiling", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"tMax", " ", "-", " ", "0.001"}], ")"}], "/", "stepSize"}], 
+     "]"}], " ", "+", " ", "1"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambdaValues", " ", "=", " ", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"0", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"numIterations", ",", " ", "4"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"i", " ", "=", " ", "1"}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Create", " ", "the", " ", "loop", " ", "with", " ", "Monitor"}], 
+   " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Monitor", "[", "\n", "    ", 
+   RowBox[{
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"t", " ", "=", " ", "0.001"}], ",", " ", 
+      RowBox[{"t", " ", "<=", " ", "tMax"}], ",", " ", 
+      RowBox[{"t", " ", "+=", " ", "stepSize"}], ",", "\n", "        ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Jacobian", " ", "matrix"}], " ", "*)"}], "\n", "        ", 
+      RowBox[{
+       RowBox[{"jacobianMatrix", " ", "=", " ", 
+        RowBox[{"{", "\n", "            ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "\[Sigma]"}], ",", " ", "\[Sigma]", ",", " ", "0"}], 
+           "}"}], ",", "\n", "            ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"r", " ", "-", " ", 
+             RowBox[{"zFunction", "[", "t", "]"}]}], ",", " ", 
+            RowBox[{"-", "1"}], ",", " ", 
+            RowBox[{"-", 
+             RowBox[{"xFunction", "[", "t", "]"}]}]}], "}"}], ",", "\n", 
+          "            ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"yFunction", "[", "t", "]"}], ",", " ", 
+            RowBox[{"xFunction", "[", "t", "]"}], ",", " ", 
+            RowBox[{"-", "b"}]}], "}"}]}], "\n", "        ", "}"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"M", " ", "matrix"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{"M", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"IdentityMatrix", "[", "3", "]"}], " ", "+", " ", 
+         RowBox[{"jacobianMatrix", " ", "*", " ", "stepSize"}]}]}], ";", "\n",
+        "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"QR", " ", "decomposition"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{"valuesQR", " ", "=", " ", 
+        RowBox[{"QRDecomposition", "[", 
+         RowBox[{"M", " ", ".", " ", "Qold"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"Qold", " ", "=", " ", 
+        RowBox[{"Transpose", "[", 
+         RowBox[{"valuesQR", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"Rold", " ", "=", " ", 
+        RowBox[{"valuesQR", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ";", "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Update", " ", "Lyapunov", " ", "exponents"}], " ", "*)"}], 
+       "\n", "        ", 
+       RowBox[{"lambda1", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", " ", "1"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"lambda2", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ",", " ", "2"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"lambda3", " ", "+=", " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"Abs", "[", 
+          RowBox[{"Rold", "[", 
+           RowBox[{"[", 
+            RowBox[{"3", ",", " ", "3"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+       "\n", "        ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Assign", " ", "values", " ", "to", " ", "lambdaValues", " ", 
+         "matrix"}], " ", "*)"}], "\n", "        ", 
+       RowBox[{
+        RowBox[{"lambdaValues", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", 
+          RowBox[{"lambda1", "/", "t"}], ",", " ", 
+          RowBox[{"lambda2", "/", "t"}], ",", " ", 
+          RowBox[{"lambda3", "/", "t"}]}], "}"}]}], ";", "\n", "        ", 
+       RowBox[{"i", "++"}], ";"}]}], "\n", "    ", "]"}], ",", "\n", "    ", 
+    RowBox[{"ProgressIndicator", "[", 
+     RowBox[{"t", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0.001", ",", " ", "tMax"}], "}"}]}], "]"}]}], "\n", "]"}], 
+  "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Output", " ", "results"}], " ", "*)"}]}], "\n", 
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"lambda1", "/", "tMax"}], ",", " ", 
+   RowBox[{"lambda2", "/", "tMax"}], ",", " ", 
+   RowBox[{"lambda3", "/", "tMax"}]}], "}"}]}], "Code",
+ CellChangeTimes->{{3.91121657021614*^9, 3.9112165945675297`*^9}, {
+   3.911216978923102*^9, 3.911216980302495*^9}, 3.91121710195164*^9, {
+   3.911217231371438*^9, 3.911217233185153*^9}, {3.911217492252627*^9, 
+   3.9112174958610477`*^9}, {3.911217591021686*^9, 3.9112175914049273`*^9}, {
+   3.9112176554347963`*^9, 3.911217682313052*^9}, 3.9112177715937862`*^9, 
+   3.9112200157970247`*^9, {3.911220197575007*^9, 3.911220200474515*^9}, 
+   3.911220235438799*^9, {3.911220298423622*^9, 3.911220310475993*^9}, 
+   3.9112203819928417`*^9, {3.91122100287681*^9, 3.911221005171906*^9}, 
+   3.911221351623067*^9, {3.911221528040431*^9, 3.911221536619998*^9}, {
+   3.9112217552306423`*^9, 3.911221756735804*^9}, {3.911222034484199*^9, 
+   3.9112220406206427`*^9}, 3.911222082666119*^9, {3.911222827360924*^9, 
+   3.9112228571571293`*^9}, 3.911224768730462*^9, {3.911224801404212*^9, 
+   3.911224853827351*^9}, {3.911224993562605*^9, 3.911224998587592*^9}, {
+   3.911225178135377*^9, 3.911225193936512*^9}, 3.9112252861846447`*^9, {
+   3.9112265078076687`*^9, 3.91122651731022*^9}, {3.911229454094873*^9, 
+   3.9112294614893312`*^9}},ExpressionUUID->"e6f1e915-8fe3-4f72-b823-\
+4a7c439e7d26"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.12309587796798746`", ",", 
+   RowBox[{"-", "10.990821659643364`"}], ",", 
+   RowBox[{"-", "11.018430514100714`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.9112258466816473`*^9, 3.911228965019825*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"a9c8ebda-3fd1-4113-88de-d1e8576541fc"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"filteredLambdaValues", " ", "=", " ", 
+    RowBox[{"Select", "[", 
+     RowBox[{"lambdaValues", ",", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"First", "[", "#", "]"}], " ", ">=", " ", "1"}], " ", "&"}]}],
+      "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Extract", " ", "every", " ", "100", "th", " ", "value", " ", "starting", 
+    " ", "from", " ", "the", " ", "first"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambda1ValuesEvery10th", " ", "=", " ", 
+    RowBox[{"filteredLambdaValues", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"1", " ", ";;", " ", 
+        RowBox[{"-", "1"}], " ", ";;", " ", "100"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", " ", "2"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"t", " ", "and", " ", 
+    RowBox[{"lambda1", "/", "t"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambda2ValuesEvery10th", " ", "=", " ", 
+    RowBox[{"filteredLambdaValues", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"1", " ", ";;", " ", 
+        RowBox[{"-", "1"}], " ", ";;", " ", "100"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", " ", "3"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"t", " ", "and", " ", 
+    RowBox[{"lambda2", "/", "t"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambda3ValuesEvery10th", " ", "=", " ", 
+    RowBox[{"filteredLambdaValues", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"1", " ", ";;", " ", 
+        RowBox[{"-", "1"}], " ", ";;", " ", "100"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", " ", "4"}], "}"}]}], "]"}], "]"}]}], ";"}], "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"t", " ", "and", " ", 
+    RowBox[{"lambda3", "/", "t"}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", "Plotting", " ", "*)"}]}], "\n", 
+ RowBox[{"ListLogLinearPlot", "[", "\n", "    ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "lambda1ValuesEvery10th", ",", " ", "lambda2ValuesEvery10th", ",", " ", 
+     "lambda3ValuesEvery10th"}], "}"}], ",", "\n", "    ", 
+   RowBox[{"PlotLegends", " ", "->", " ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\[Lambda]1\>\"", ",", " ", "\"\<\[Lambda]2\>\"", ",", " ", 
+      "\"\<\[Lambda]3\>\""}], "}"}]}], ",", "\n", "    ", 
+   RowBox[{"AxesLabel", " ", "->", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Log(t)\>\"", ",", " ", "\"\<Lambda values\>\""}], "}"}]}], 
+   ",", "\n", "    ", 
+   RowBox[{
+   "PlotLabel", " ", "->", " ", 
+    "\"\<For e) Lambda values vs. Log(Time)\>\""}], ",", "\n", "    ", 
+   RowBox[{"PlotRange", " ", "->", " ", "All"}], ",", "\n", "    ", 
+   RowBox[{"PlotStyle", " ", "->", " ", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", " ", "Green", ",", " ", "Blue"}], "}"}]}]}], "\n", 
+  "]"}]}], "Code",
+ CellChangeTimes->{{3.9112167003705063`*^9, 3.911216713313048*^9}, {
+   3.911216788803067*^9, 3.911216796309222*^9}, {3.91121762600419*^9, 
+   3.911217626267446*^9}, {3.911220334222644*^9, 3.911220334316451*^9}, {
+   3.911224961295287*^9, 3.911224962802074*^9}, {3.911228669892229*^9, 
+   3.9112286724066973`*^9}, {3.911228795765647*^9, 3.9112288133826303`*^9}, 
+   3.911229026914894*^9, {3.911229072058195*^9, 3.9112291289923553`*^9}, {
+   3.911229191329658*^9, 3.9112291954809647`*^9}, {3.9112292273980637`*^9, 
+   3.911229230000163*^9}},
+ CellLabel->"In[64]:=",ExpressionUUID->"f792edef-9b66-4905-9d93-33a1b7479067"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "f) Give your (converged) result for the Lyapunov exponents with the new \
+parameters as the ordered vector ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"[", 
+         RowBox[{
+           SubscriptBox["\[Lambda]", "1"], ",", 
+           SubscriptBox["\[Lambda]", "2"], ",", 
+           SubscriptBox["\[Lambda]", "3"]}], "]"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "[\\lambda_1,\\lambda_2, \\lambda_3]", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6ec11939-083c-4a53-aafd-14435d722011"],
+ " with \:200b\:200b ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox["\[Lambda]", "1"], "\[GreaterEqual]", 
+         SubscriptBox["\[Lambda]", "1"], "\[GreaterEqual]", 
+         SubscriptBox["\[Lambda]", "3"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\lambda_1 \\geq \\lambda_1 \\geq \\lambda_3", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "72e68c0d-7488-4ac5-a1e4-cf28441ae192"],
+ ". Provide two decimal digits of accuracy."
+}], "Section",
+ CellChangeTimes->{{3.91121661183113*^9, 
+  3.911216626124761*^9}},ExpressionUUID->"a18a0828-51eb-41c7-a1e8-\
+c774ac65dbdd"],
+
+Cell["See output of e).", "Text",
+ CellChangeTimes->{{3.911216637267366*^9, 
+  3.911216643323264*^9}},ExpressionUUID->"92ebc562-ded2-4b2a-9e9f-\
+ec3fdb6e3d6c"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{Full, Full},
 WindowMargins->{{20, Automatic}, {Automatic, 44}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
 FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"d7929890-b33e-48e0-ae5b-e0d60eb76a00"
@@ -289,18 +1522,46 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 185, 3, 160, "Title",ExpressionUUID->"e5111118-4836-4da1-912c-446568c8badb"],
+Cell[580, 22, 185, 3, 98, "Title",ExpressionUUID->"e5111118-4836-4da1-912c-446568c8badb"],
 Cell[768, 27, 1746, 47, 187, "Section",ExpressionUUID->"09a363f0-9235-4a66-9ef2-dd5ce285dd04"],
 Cell[CellGroupData[{
-Cell[2539, 78, 5145, 104, 1775, "Section",ExpressionUUID->"f5d1de66-5305-43d0-b4a3-798ab87533e2"],
-Cell[7687, 184, 398, 7, 58, "Text",ExpressionUUID->"8f1bf4ae-462e-423b-a4ff-3505d8c5ca22"]
+Cell[2539, 78, 5175, 105, 1165, "Section",ExpressionUUID->"f5d1de66-5305-43d0-b4a3-798ab87533e2"],
+Cell[7717, 185, 496, 8, 58, "Text",ExpressionUUID->"8f1bf4ae-462e-423b-a4ff-3505d8c5ca22"],
+Cell[CellGroupData[{
+Cell[8238, 197, 10720, 283, 1364, "Code",ExpressionUUID->"ab474fa4-1647-45a6-89f3-01fc4254f756"],
+Cell[18961, 482, 282, 6, 34, "Output",ExpressionUUID->"71452575-95b5-43cf-b44b-2a54f70ce4d1"]
+}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8122, 196, 1874, 47, 296, "Section",ExpressionUUID->"552f2a19-6e23-4f7a-b84a-26c372288d0b"],
-Cell[9999, 245, 118, 3, 35, "Text",ExpressionUUID->"1c893e5c-317c-4f33-9c7b-c4980b89c6de"]
+Cell[19292, 494, 1874, 47, 180, "Section",ExpressionUUID->"552f2a19-6e23-4f7a-b84a-26c372288d0b"],
+Cell[21169, 543, 3040, 77, 357, "Code",ExpressionUUID->"89b69be0-b1d2-46cf-bfbe-f073d1f1e21c"]
 }, Open  ]],
-Cell[10132, 251, 316, 7, 143, "Section",ExpressionUUID->"09c01536-180b-488a-839f-6e06808519e2"],
-Cell[10451, 260, 468, 10, 198, "Section",ExpressionUUID->"8f121f00-563c-46df-934a-a3a7688c8ddd"]
+Cell[24224, 623, 371, 8, 105, "Section",ExpressionUUID->"09c01536-180b-488a-839f-6e06808519e2"],
+Cell[CellGroupData[{
+Cell[24620, 635, 468, 10, 122, "Section",ExpressionUUID->"8f121f00-563c-46df-934a-a3a7688c8ddd"],
+Cell[CellGroupData[{
+Cell[25113, 649, 10145, 275, 1364, "Code",ExpressionUUID->"200b761b-6cad-445f-b6d2-cc2969f276fe"],
+Cell[35261, 926, 300, 5, 34, "Output",ExpressionUUID->"33ffd551-faaf-4b7e-9364-7292d47db033"]
+}, Open  ]],
+Cell[35576, 934, 2985, 76, 357, "Code",ExpressionUUID->"5d416a1c-f6a1-4806-8aaa-2fbaf56103b2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38598, 1015, 1292, 31, 109, "Section",ExpressionUUID->"857967bb-8422-4997-9444-41460fe44a4e"],
+Cell[39893, 1048, 161, 3, 35, "Text",ExpressionUUID->"07e7ee2e-faf7-47f0-a75f-ac17b4e43780"]
+}, Open  ]],
+Cell[40069, 1054, 440, 8, 143, "Section",ExpressionUUID->"d543a393-afd4-4ee0-add6-f5b71a08b16a"],
+Cell[CellGroupData[{
+Cell[40534, 1066, 401, 8, 91, "Section",ExpressionUUID->"faf5525f-31e9-4cf9-8247-02a3dd6c5615"],
+Cell[CellGroupData[{
+Cell[40960, 1078, 10938, 285, 1364, "Code",ExpressionUUID->"e6f1e915-8fe3-4f72-b823-4a7c439e7d26"],
+Cell[51901, 1365, 321, 6, 34, "Output",ExpressionUUID->"a9c8ebda-3fd1-4113-88de-d1e8576541fc"]
+}, Open  ]],
+Cell[52237, 1374, 3482, 85, 338, "Code",ExpressionUUID->"f792edef-9b66-4905-9d93-33a1b7479067"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55756, 1464, 1291, 31, 109, "Section",ExpressionUUID->"a18a0828-51eb-41c7-a1e8-c774ac65dbdd"],
+Cell[57050, 1497, 159, 3, 35, "Text",ExpressionUUID->"92ebc562-ded2-4b2a-9e9f-ec3fdb6e3d6c"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
